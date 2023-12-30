@@ -21,6 +21,7 @@ public:
     void SetDenom(int d);
     Rational Simplify()const;
     Rational Inverse() const;
+    double ToDouble() const;
     Rational operator+ (const Rational& b)const;
     Rational operator- (const Rational& b)const;
     Rational operator* (const Rational& b)const;

@@ -70,19 +70,20 @@ void Rational::SetDenom(int d) {
     }
 }
 
-Rational Rational::Simplify() const{
+Rational Rational::Simplify() const {
     int gcd = FindGCD(GetNumer(), GetDenom());
-    Rational result;
-    result.SetNumer(GetNumer()/gcd);
-    result.SetDenom(GetDenom() / gcd);
-    return result;
+    return Rational(GetNumer() / gcd, GetDenom() / gcd);
 }
 
-Rational Rational::Inverse() const{
-    Rational result;
-    result.SetNumer(GetDenom());
-    result.SetDenom(GetNumer());
-    return result;
+Rational Rational::Inverse() const {
+    if (GetNumer() == 0) {
+        throw std::invalid_argument("Cannot inverse a zero.");
+    }
+    return Rational(GetDenom(), GetNumer());
+}
+
+double Rational::ToDouble() const {
+    return static_cast<double>(GetNumer()) / static_cast<double>(GetDenom());
 }
 
 Rational Rational::operator+(const Rational& b) const {

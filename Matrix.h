@@ -1,28 +1,23 @@
 #ifndef MATRIX_H
 #define MATRIX_H
-#include "Rational.h"
+#include "Vector.h"
 
 class Matrix {
 private:
     int SizeRows, SizeCols;
-    std::vector<std::vector<Rational>> matrix;
+    std::vector<Vector> matrix;
 public:
-    Matrix(int numRows, int numCols, std::initializer_list<int> elements);
-    Matrix(int numRows, int numCols, std::initializer_list<Rational> elements);
-    Matrix(int numRows, int numCols);
-    Matrix(int num);
+    Matrix(std::initializer_list<Vector> columns);
+    Matrix(int row, int col);
     Matrix(const Matrix& other);
-    void SetElement(int i, int j, Rational n);
-    Matrix SetRowVector(int r, Matrix v) const;
-    Matrix SetColVector(int c, Matrix v) const;
     int GetRowSize() const;
     int GetColSize() const;
+    void SetElement(int i, int j, Rational n);
+    void SetRowVector(int row, Vector v);
+    void SetColVector(int col, Vector v);
     Rational GetElement(int row, int col)const;
-    Matrix GetRowVector(int row) const;
-    Matrix GetColVector(int col) const;
-    int FindPivotIndex()const;
-    Matrix SwapRowVector(int a, int b)const;
-    Matrix SwapColVector(int a, int b)const;
+    Vector GetRowVector(int row) const;
+    Vector GetColVector(int col) const;
     Matrix Transpose() const;
     bool IsSquare() const;
     bool IsSymmetric() const;
@@ -40,4 +35,5 @@ public:
     bool operator!=(const Matrix& b)const;
 };
 std::ostream& operator<<(std::ostream& os, const Matrix& b);
+
 #endif // MATRIX_H
