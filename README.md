@@ -158,17 +158,25 @@ The class also provides methods to check various properties of the matrix, inclu
 Here are some examples of how to use the `Matrix` class:
 
 ```cpp
+#include <iostream>
 #include "Matrix.h"
+#include "Vector.h"
+#include "Rational.h"
 
 int main() {
-    Matrix A(2, 2, {1, 2, 3, 4});
-    Matrix B(2, 2, {5, 6, 7, 8});
+    Vector v1{ 1, 2, 3 };
+    Vector v2{ 4, 5, 6 };
+    Vector v3{ 7, 8, 9 };
 
-    Matrix sum = A + B;
-    Matrix product = A * B;
+    Matrix matrix{ v1, v2, v3 };
 
-    std::cout << "Sum:\n" << sum << std::endl;
-    std::cout << "Product:\n" << product << std::endl;
+    Matrix result_addition = matrix + matrix;
+    Matrix result_subtraction = matrix - matrix;
+    Matrix result_scalar_multiplication = matrix * 3;
+
+    std::cout << "Matrix Addition:\n" << result_addition << std::endl;
+    std::cout << "Matrix Subtraction:\n" << result_subtraction << std::endl;
+    std::cout << "Matrix Scalar Multiplication:\n" << result_scalar_multiplication << std::endl;
 
     return 0;
 }
